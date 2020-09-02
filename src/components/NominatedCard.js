@@ -2,6 +2,7 @@ import React from 'react';
 import { useStateValue } from '../context/StateProvider';
 
 import { gql, useQuery } from '@apollo/client';
+import { CloseCircleOutlined } from '@ant-design/icons';
 
 import './NominatedCard.css';
 
@@ -32,7 +33,7 @@ const NominatedCard = ({ imdbID }) => {
   return (
     <li className="nominatedcard">
       <span>{getMovieDetails.Title}</span>
-      <button
+      <span
         onClick={() =>
           dispatch({
             type: 'REMOVE_NOMINATION',
@@ -40,8 +41,8 @@ const NominatedCard = ({ imdbID }) => {
           })
         }
       >
-        Remove
-      </button>
+        <CloseCircleOutlined className="nominatedcard__close" />
+      </span>
     </li>
   );
 };

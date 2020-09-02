@@ -9,8 +9,9 @@ const Nomination = () => {
   return (
     <div className="nomination">
       <h3>
-        nominations <TrophyOutlined />
+        <TrophyOutlined />
       </h3>
+      <h3>your nominations</h3>
       <div className="nomination__container">
         <ul>
           {nominatedMovies.map((imdbID) => (

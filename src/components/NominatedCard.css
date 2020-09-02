@@ -5,6 +5,7 @@
   justify-content: space-between;
   border: solid 1px #dfe1e5;
   margin-bottom: 10px;
+  background-color: white;
 }
 
 .nominatedcard:hover {
@@ -13,4 +14,14 @@
 
 .nominatedcard > span {
   font-size: 18px;
+}
+
+.nominatedcard__close {
+  font-size: 24px;
+  transition: ease-in-out;
+  transition-duration: 200ms;
+}
+
+.nominatedcard__close:hover {
+  transform: scale(1.4);
 }

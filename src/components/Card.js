@@ -24,7 +24,7 @@ const Card = ({ movie }) => {
       >
         Nominate
       </button>
-      {nominatedMovies.includes(movie.imdbID) && 'Nominated'}
+      {nominatedMovies.includes(movie.imdbID) && 'Nominate'}
     </div>
   );
 };
