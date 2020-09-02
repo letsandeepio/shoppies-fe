@@ -2,19 +2,20 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 10px;
   align-items: center;
-  width: 100%;
+  width: 95vw;
+  background-color: white;
+  padding: 20px;
 }
 
-.header__logo>h1 {
+.header__logo > h1 {
   font-family: 'Lobster Two', cursive;
   font-size: 40px;
   font-weight: 300;
   text-align: center;
 }
 
-.header__logo>h2 {
+.header__logo > h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 18px;
   text-align: center;

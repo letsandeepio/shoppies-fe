@@ -1,0 +1,16 @@
+.nominatedcard {
+  list-style-type: none;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  border: solid 1px #dfe1e5;
+  margin-bottom: 10px;
+}
+
+.nominatedcard:hover {
+  background-color: #efefef;
+}
+
+.nominatedcard > span {
+  font-size: 18px;
+}

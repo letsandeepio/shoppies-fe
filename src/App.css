@@ -3,7 +3,6 @@
 }
 
 .app__layout-right {
-  background-color: #313453;
   width: 30vw;
   height: 100vh;
 }
@@ -12,5 +11,4 @@
   width: 70vw;
   height: 100vh;
   overflow: scroll;
-  background-color: #fcf3e4;
 }

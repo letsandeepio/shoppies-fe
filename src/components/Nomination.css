@@ -1,0 +1,17 @@
+.nomination {
+  margin-top: 200px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.nomination__container {
+  margin: 20px;
+}
+
+.nomination h3 {
+  font-size: 30px;
+  text-align: center;
+}
+
+.nomination ul {
+  padding: 0px;
+}

@@ -3,6 +3,8 @@ import { useStateValue } from '../context/StateProvider';
 
 import { gql, useQuery } from '@apollo/client';
 
+import './NominatedCard.css';
+
 const GET_MOVIE_DETAILS = gql`
   query getMovieDetails($imdbID: String!) {
     getMovieDetails(imdbID: $imdbID) {
@@ -28,8 +30,8 @@ const NominatedCard = ({ imdbID }) => {
   const { getMovieDetails } = data;
 
   return (
-    <li>
-      {`${getMovieDetails.Title} (${getMovieDetails.Year})`} -
+    <li className="nominatedcard">
+      <span>{getMovieDetails.Title}</span>
       <button
         onClick={() =>
           dispatch({

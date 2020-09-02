@@ -3,6 +3,7 @@ import { useStateValue } from '../context/StateProvider';
 
 import { gql, useLazyQuery } from '@apollo/client';
 import Card from './Card';
+import './CardList.css';
 
 const SEARCH = gql`
   query Search($title: String!) {
@@ -36,7 +37,7 @@ const CardList = () => {
 
   if (loading) return `Loading`;
   return (
-    <div>
+    <div className="cardlist">
       {isNominationFull && (
         <div>
           <h1>Thanks for nominating 5 movies</h1>
