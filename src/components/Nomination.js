@@ -1,26 +1,15 @@
 import React from 'react';
 import { useStateValue } from '../context/StateProvider';
+import NominatedCard from './NominatedCard';
 
 const Nomination = () => {
-  const [{ nominatedMovies }, dispatch] = useStateValue();
+  const [{ nominatedMovies }] = useStateValue();
   return (
     <div>
       <h1>Nominated Movies</h1>
       <ul>
-        {nominatedMovies.map((item) => (
-          <li key={item}>
-            {item} -
-            <button
-              onClick={() =>
-                dispatch({
-                  type: 'REMOVE_NOMINATION',
-                  id: item
-                })
-              }
-            >
-              Remove
-            </button>
-          </li>
+        {nominatedMovies.map((imdbID) => (
+          <NominatedCard key={imdbID} imdbID={imdbID} />
         ))}
       </ul>
     </div>

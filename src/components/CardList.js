@@ -34,7 +34,6 @@ const CardList = () => {
     }
   }, [getSearchResults, searchTerm]);
 
-  console.log(data);
   if (loading) return `Loading`;
   return (
     <div>
