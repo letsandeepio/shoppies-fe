@@ -1,0 +1,27 @@
+.live-search {
+  display: flex;
+  background: #fff;
+  border: 1px solid #dfe1e5;
+  box-shadow: none;
+  height: 39px;
+  width: 490px;
+  border-radius: 24px;
+  height: 44px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.live-search:hover {
+  border-color: rgba(223, 225, 229, 0);
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+.live-search input {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 50px;
+  border: 0px;
+  outline: none;
+  width: 80%;
+}

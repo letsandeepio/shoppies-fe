@@ -1,10 +1,12 @@
 import React from 'react';
 import { useStateValue } from '../context/StateProvider';
+import './LiveSearch.css';
+import { SearchOutlined } from '@ant-design/icons';
 
 const LiveSearch = () => {
   const [{ searchTerm }, dispatch] = useStateValue();
   return (
-    <div>
+    <div className="live-search">
       <input
         placeholder="search here"
         value={searchTerm}
@@ -12,7 +14,7 @@ const LiveSearch = () => {
           dispatch({ type: 'SET_SEARCH_TERM', searchTerm: e.target.value })
         }
       />
-      <div>{searchTerm}</div>
+      <SearchOutlined />
     </div>
   );
 };
