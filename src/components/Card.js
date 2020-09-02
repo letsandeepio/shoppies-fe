@@ -4,7 +4,7 @@ import './Card.css';
 import { useStateValue } from '../context/StateProvider';
 
 const Card = ({ movie }) => {
-  const [{ nominatedMovies }, dispatch] = useStateValue();
+  const [{ nominatedMovies, isNominationFull }, dispatch] = useStateValue();
   return (
     <div className="card">
       <img
@@ -15,15 +15,16 @@ const Card = ({ movie }) => {
         }
         alt=""
       ></img>
-      <h6>{movie.Title}</h6>
+      <h6>
+        {movie.Title}({movie.Year})
+      </h6>
       <button
         onClick={() => dispatch({ type: 'ADD_NOMINATION', id: movie.imdbID })}
-        disabled={
-          nominatedMovies.includes(movie.imdbID) || nominatedMovies.length >= 5
-        }
+        disabled={nominatedMovies.includes(movie.imdbID) || isNominationFull}
       >
         Nominate
       </button>
+      {nominatedMovies.includes(movie.imdbID) && 'Nominated'}
     </div>
   );
 };

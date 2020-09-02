@@ -16,7 +16,7 @@ const SEARCH = gql`
 `;
 
 const CardList = () => {
-  const [{ searchTerm }] = useStateValue();
+  const [{ searchTerm, isNominationFull }] = useStateValue();
   const [showResults, setShowResults] = useState(false);
 
   const [getSearchResults, { loading, data }] = useLazyQuery(SEARCH);
@@ -38,6 +38,11 @@ const CardList = () => {
   if (loading) return `Loading`;
   return (
     <div>
+      {isNominationFull && (
+        <div>
+          <h1>Thanks for nominating 5 movies</h1>
+        </div>
+      )}
       {showResults &&
         data?.search?.map((item) => <Card key={item.imdbID} movie={item} />)}
     </div>

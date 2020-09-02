@@ -1,6 +1,7 @@
 export const initialState = {
   searchTerm: '',
-  nominatedMovies: []
+  nominatedMovies: [],
+  isNominationFull: false
 };
 
 export const actionTypes = {
@@ -20,14 +21,16 @@ const reducer = (state, action) => {
     case actionTypes.ADD_NOMINATION:
       return {
         ...state,
-        nominatedMovies: [...state.nominatedMovies, action.id]
+        nominatedMovies: [...state.nominatedMovies, action.id],
+        isNominationFull: state.nominatedMovies.length + 1 >= 5
       };
     case actionTypes.REMOVE_NOMINATION:
       return {
         ...state,
         nominatedMovies: state.nominatedMovies.filter(
           (item) => item !== action.id
-        )
+        ),
+        isNominationFull: state.nominatedMovies.length - 1 >= 5
       };
     default:
       return state;
