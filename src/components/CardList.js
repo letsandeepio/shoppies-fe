@@ -15,15 +15,17 @@ const SEARCH = gql`
 `;
 
 const CardList = () => {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('San');
   const [getSearchResults, { loading, data }] = useLazyQuery(SEARCH);
 
   useEffect(() => {
-    getSearchResults({
-      variables: {
-        title
-      }
-    });
+    if (title.length >= 3) {
+      getSearchResults({
+        variables: {
+          title
+        }
+      });
+    }
   }, [getSearchResults, title]);
 
   console.log(data);
@@ -31,7 +33,7 @@ const CardList = () => {
   return (
     <div>
       {data?.search?.map((item) => (
-        <Card movie={item} />
+        <Card key={item.imdbID} movie={item} />
       ))}
     </div>
   );
