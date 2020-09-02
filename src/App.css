@@ -4,8 +4,8 @@
 
 .app__layout-left {
   width: 30vw;
-  background-color: #fcf3e4;
   height: 100vh;
+  background-color: #e8e8ff;
 }
 
 .app__layout-right {

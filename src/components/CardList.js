@@ -38,11 +38,15 @@ const CardList = () => {
   if (loading) return `Loading`;
   return (
     <div className="cardlist">
-      {isNominationFull && (
-        <div>
-          <h1>Thanks for nominating 5 movies</h1>
-        </div>
-      )}
+      <Card
+        movie={{
+          Title: 'titanic',
+          imdbID: '1233',
+          Year: '2009',
+          Poster:
+            'https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg'
+        }}
+      />
       {showResults &&
         data?.search?.map((item) => <Card key={item.imdbID} movie={item} />)}
     </div>
