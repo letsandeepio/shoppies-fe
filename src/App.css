@@ -2,13 +2,13 @@
   display: flex;
 }
 
-.app__layout-right {
+.app__layout-left {
   width: 30vw;
   background-color: #fcf3e4;
   height: 100vh;
 }
 
-.app__layout-left {
+.app__layout-right {
   width: 70vw;
   height: 100vh;
   overflow: scroll;

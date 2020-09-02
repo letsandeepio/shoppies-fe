@@ -1,4 +1,10 @@
-.live-search {
+.livesearch {
+  display: flex;
+  width: 100%;
+  position: fixed;
+}
+
+.livesearch__container {
   display: flex;
   background: #fff;
   border: 1px solid #dfe1e5;
@@ -7,16 +13,16 @@
   width: 490px;
   border-radius: 24px;
   height: 44px;
-  margin: 0 auto;
+  margin: 20px auto;
   align-items: center;
 }
 
-.live-search:hover {
+.livesearch__container:hover {
   border-color: rgba(223, 225, 229, 0);
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 }
 
-.live-search input {
+.livesearch__container input {
   font-family: 'Cormorant Garamond', serif;
   font-size: 18px;
   font-weight: bold;

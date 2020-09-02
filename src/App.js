@@ -2,19 +2,18 @@ import React from 'react';
 import './App.css';
 
 import CardList from './components/CardList';
-import Nomination from './components/Nomination';
-import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import LiveSearch from './components/LiveSearch';
 
 function App() {
   return (
     <div className="app">
-      <Header />
-
       <div className="app__layout">
-        <div className="app__layout-right">
-          <Nomination />
-        </div>
         <div className="app__layout-left">
+          <Sidebar />
+        </div>
+        <div className="app__layout-right">
+          <LiveSearch />
           <CardList />
         </div>
       </div>
