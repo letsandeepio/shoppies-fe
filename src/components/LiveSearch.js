@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { useStateValue } from '../context/StateProvider';
 
 const LiveSearch = () => {
-  const [search, setSearch] = useState('');
+  const [{ searchTerm }, dispatch] = useStateValue();
   return (
     <div>
       <input
         placeholder="search here"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        value={searchTerm}
+        onChange={(e) =>
+          dispatch({ type: 'SET_SEARCH_TERM', searchTerm: e.target.value })
+        }
       />
-      <div>{search}</div>
+      <div>{searchTerm}</div>
     </div>
   );
 };

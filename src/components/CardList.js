@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useStateValue } from '../context/StateProvider';
 
 import { gql, useLazyQuery } from '@apollo/client';
 import Card from './Card';
@@ -15,26 +16,30 @@ const SEARCH = gql`
 `;
 
 const CardList = () => {
-  const [title, setTitle] = useState('San');
+  const [{ searchTerm }] = useStateValue();
+  const [showResults, setShowResults] = useState(false);
+
   const [getSearchResults, { loading, data }] = useLazyQuery(SEARCH);
 
   useEffect(() => {
-    if (title.length >= 3) {
+    if (searchTerm.length >= 3) {
       getSearchResults({
         variables: {
-          title
+          title: searchTerm
         }
       });
+      setShowResults(true);
+    } else {
+      setShowResults(false);
     }
-  }, [getSearchResults, title]);
+  }, [getSearchResults, searchTerm]);
 
   console.log(data);
   if (loading) return `Loading`;
   return (
     <div>
-      {data?.search?.map((item) => (
-        <Card key={item.imdbID} movie={item} />
-      ))}
+      {showResults &&
+        data?.search?.map((item) => <Card key={item.imdbID} movie={item} />)}
     </div>
   );
 };
