@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 import { StateProvider } from './context/StateProvider';
 import reducer, { initialState } from './hooks/Reducer';
+import getLocalStorage from './helpers/getLocalStorage';
 
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
@@ -18,7 +19,11 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <StateProvider initialState={initialState} reducer={reducer}>
+      <StateProvider
+        initialState={initialState}
+        reducer={reducer}
+        init={getLocalStorage}
+      >
         <App />
       </StateProvider>
     </ApolloProvider>
