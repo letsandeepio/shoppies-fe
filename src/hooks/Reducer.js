@@ -6,7 +6,7 @@ export const initialState = {
 export const actionTypes = {
   SET_SEARCH_TERM: 'SET_SEARCH_TERM',
   ADD_NOMINATION: 'ADD_NOMINATION',
-  REMOVE_NOMATION: 'REMOVE_NOMATION'
+  REMOVE_NOMINATION: 'REMOVE_NOMINATION'
 };
 
 const reducer = (state, action) => {
@@ -21,6 +21,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         nominatedMovies: [...state.nominatedMovies, action.id]
+      };
+    case actionTypes.REMOVE_NOMINATION:
+      return {
+        ...state,
+        nominatedMovies: state.nominatedMovies.filter(
+          (item) => item !== action.id
+        )
       };
     default:
       return state;
