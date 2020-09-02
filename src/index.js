@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { StateProvider } from './context/StateProvider';
-import reducer, { initialState } from './hooks/reducer';
+import reducer, { initialState } from './hooks/Reducer';
 
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
