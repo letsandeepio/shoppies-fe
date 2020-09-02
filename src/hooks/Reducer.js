@@ -7,7 +7,8 @@ export const initialState = {
 export const actionTypes = {
   SET_SEARCH_TERM: 'SET_SEARCH_TERM',
   ADD_NOMINATION: 'ADD_NOMINATION',
-  REMOVE_NOMINATION: 'REMOVE_NOMINATION'
+  REMOVE_NOMINATION: 'REMOVE_NOMINATION',
+  SET_NOMINATION_FULL: 'SET_NOMINATION_FULL'
 };
 
 const reducer = (state, action) => {
@@ -21,16 +22,19 @@ const reducer = (state, action) => {
     case actionTypes.ADD_NOMINATION:
       return {
         ...state,
-        nominatedMovies: [...state.nominatedMovies, action.id],
-        isNominationFull: state.nominatedMovies.length + 1 >= 5
+        nominatedMovies: [...state.nominatedMovies, action.id]
       };
     case actionTypes.REMOVE_NOMINATION:
       return {
         ...state,
         nominatedMovies: state.nominatedMovies.filter(
           (item) => item !== action.id
-        ),
-        isNominationFull: state.nominatedMovies.length - 1 >= 5
+        )
+      };
+    case actionTypes.SET_NOMINATION_FULL:
+      return {
+        ...state,
+        isNominationFull: action.status
       };
     default:
       return state;

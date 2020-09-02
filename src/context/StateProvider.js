@@ -9,6 +9,10 @@ export const StateProvider = ({ reducer, initialState, children, init }) => {
 
   useEffect(() => {
     localStorage.setItem('nominatedMovies', JSON.stringify(nominatedMovies));
+    dispatch({
+      type: 'SET_NOMINATION_FULL',
+      status: nominatedMovies.length >= 5
+    });
   }, [nominatedMovies]);
 
   return (
