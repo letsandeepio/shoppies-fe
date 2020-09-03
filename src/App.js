@@ -8,6 +8,7 @@ import Notification from './components/Notification';
 import { useStateValue } from './context/StateProvider';
 
 import { Route, Switch } from 'react-router-dom';
+import Login from './components/Login';
 
 function App() {
   const [{ isNominationFull }] = useStateValue();
@@ -16,7 +17,7 @@ function App() {
     <div className="app">
       <Switch>
         <Route exact path="/login">
-          <h1>Login Page</h1>
+          <Login />
         </Route>
         <Route exact path="/">
           <div className="app__layout">
