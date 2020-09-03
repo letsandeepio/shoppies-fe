@@ -17,7 +17,7 @@ const SEARCH = gql`
 `;
 
 const CardList = () => {
-  const [{ searchTerm, isNominationFull }] = useStateValue();
+  const [{ searchTerm }] = useStateValue();
   const [showResults, setShowResults] = useState(false);
 
   const [getSearchResults, { loading, data }] = useLazyQuery(SEARCH);

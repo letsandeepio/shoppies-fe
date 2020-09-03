@@ -3,10 +3,17 @@ import { useStateValue } from '../context/StateProvider';
 import './LiveSearch.css';
 import { SearchOutlined } from '@ant-design/icons';
 
+import { motion } from 'framer-motion';
+
 const LiveSearch = () => {
   const [{ searchTerm }, dispatch] = useStateValue();
   return (
-    <div className="livesearch">
+    <motion.div
+      className="livesearch"
+      animate={{ y: 0 }}
+      initial={{ y: -300 }}
+      transition={{ delay: 1, duration: 1, type: 'spring' }}
+    >
       <div className="livesearch__container">
         <input
           placeholder="search here"
@@ -17,7 +24,7 @@ const LiveSearch = () => {
         />
         <SearchOutlined />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

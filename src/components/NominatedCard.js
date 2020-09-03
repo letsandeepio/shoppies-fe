@@ -39,9 +39,7 @@ const NominatedCard = ({ imdbID }) => {
     >
       {loading && (
         <div className="nominatedcard__loading">
-          <div>
-            <LoadingOutlined />
-          </div>
+          <LoadingOutlined />
         </div>
       )}
       {error && <span>{error.message}</span>}
