@@ -4,6 +4,8 @@ import { useStateValue } from '../context/StateProvider';
 import { gql, useQuery } from '@apollo/client';
 import { CloseCircleOutlined } from '@ant-design/icons';
 
+import { LoadingOutlined } from '@ant-design/icons';
+
 import './NominatedCard.css';
 
 const GET_MOVIE_DETAILS = gql`
@@ -25,11 +27,9 @@ const NominatedCard = ({ imdbID }) => {
       imdbID
     }
   });
-  const [{ nominatedMovies }, dispatch] = useStateValue();
+  const dispatch = useStateValue()[1];
 
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
-  const { getMovieDetails } = data;
+  const movieDetails = data?.getMovieDetails;
 
   return (
     <li
@@ -37,32 +37,46 @@ const NominatedCard = ({ imdbID }) => {
       onMouseEnter={() => setShowCross(true)}
       onMouseLeave={() => setShowCross(false)}
     >
-      <div
-        className="nominatedcard__poster"
-        style={{
-          background: `url('${getMovieDetails.Poster}')`,
-          backgroundSize: 'cover'
-        }}
-      ></div>
-      <div className="nominatedcard__details">
-        <div className="nominatedcard__details-title">
-          {getMovieDetails.Title}
+      {loading && (
+        <div className="nominatedcard__loading">
+          <div>
+            <LoadingOutlined />
+          </div>
         </div>
-        <div className="nominatedcard__details-subtitle">
-          {getMovieDetails.Year} • {getMovieDetails.imdbRating}
-        </div>
-      </div>
-      <div
-        onClick={() =>
-          dispatch({
-            type: 'REMOVE_NOMINATION',
-            id: imdbID
-          })
-        }
-        className="nominatedcard__details-close"
-      >
-        {showCross && <CloseCircleOutlined className="nominatedcard__close" />}
-      </div>
+      )}
+      {error && <span>{error.message}</span>}
+      {data && (
+        <>
+          <div
+            className="nominatedcard__poster"
+            style={{
+              background: `url('${movieDetails.Poster}')`,
+              backgroundSize: 'cover'
+            }}
+          ></div>
+          <div className="nominatedcard__details">
+            <div className="nominatedcard__details-title">
+              {movieDetails.Title}
+            </div>
+            <div className="nominatedcard__details-subtitle">
+              {movieDetails.Year} • {movieDetails.imdbRating}
+            </div>
+          </div>
+          <div
+            onClick={() =>
+              dispatch({
+                type: 'REMOVE_NOMINATION',
+                id: imdbID
+              })
+            }
+            className="nominatedcard__details-close"
+          >
+            {showCross && (
+              <CloseCircleOutlined className="nominatedcard__close" />
+            )}
+          </div>
+        </>
+      )}
     </li>
   );
 };
