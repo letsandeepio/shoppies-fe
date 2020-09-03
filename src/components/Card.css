@@ -1,12 +1,49 @@
 .card {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  margin: 10px;
+  max-width: 170px;
+  position: relative;
+  background-color: white;
+}
+
+.card__content {
+  font-family: 'Cormorant Garamond', serif;
   display: flex;
+  justify-items: center;
+  justify-content: flex-end;
   flex-direction: column;
+  margin: 5px;
   width: 160px;
   height: 220px;
-  margin: 5px;
 }
 
 .card__title {
-  background-color: black;
+  padding: 2px 4px;
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
+}
+
+.card__action {
+  flex-grow: 1;
+  display: flex;
+  align-self: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.card__action button {
+  font-family: inherit;
+  background-color: color;
+  border: 1px solid white;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  background-color: #1890ff;
+  border-color: #1890ff;
+  border-radius: 999px;
+}
+
+.card__action button:hover {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
 }

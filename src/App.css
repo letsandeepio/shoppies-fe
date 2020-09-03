@@ -5,11 +5,11 @@
 .app__layout-left {
   width: 30vw;
   height: 100vh;
-  background-color: #e8e8ff;
 }
 
 .app__layout-right {
   width: 70vw;
   height: 100vh;
   overflow: scroll;
+  background-color: rgba(49, 52, 82, 0.6)
 }
