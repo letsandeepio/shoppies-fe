@@ -52,7 +52,7 @@ const CardList = () => {
 
   const [getSearchResults, { loading }] = useLazyQuery(SEARCH, {
     onCompleted: (data) => {
-      data.search ? setResults(data.search) : setError('No matches found!');
+      data.search ? setResults(data.search) : setError('no movies found :(');
     }
   });
 
@@ -78,7 +78,11 @@ const CardList = () => {
         </div>
       )}
 
-      {error && <div className="cardlist__loader">{error}</div>}
+      {error && (
+        <div className="cardlist__loader">
+          <span>{error}</span>
+        </div>
+      )}
 
       {results && (
         <motion.div

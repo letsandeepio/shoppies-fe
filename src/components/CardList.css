@@ -16,3 +16,10 @@
   height: 100%;
   width: 100%;
 }
+
+.cardlist__loader > span {
+  color: white;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: bold;
+}
