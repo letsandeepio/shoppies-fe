@@ -53,7 +53,8 @@ const CardList = () => {
   const [getSearchResults, { loading }] = useLazyQuery(SEARCH, {
     onCompleted: (data) => {
       data.search ? setResults(data.search) : setError('no movies found :(');
-    }
+    },
+    onError: (error) => setError(`${error.message} :(`)
   });
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
