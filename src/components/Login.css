@@ -7,7 +7,7 @@
 }
 
 .login__container {
-  padding: 50px;
+  padding: 30px;
   width: 420px;
   height: auto;
   text-align: center;
@@ -34,8 +34,9 @@ button {
 }
 
 .login__container > button {
-  background-color: white;
+  background-color: #ffe270;
   width: 200px;
+  height: 38px;
 }
 
 .login__options {
