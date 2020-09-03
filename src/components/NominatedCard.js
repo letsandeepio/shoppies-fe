@@ -42,7 +42,7 @@ const NominatedCard = ({ imdbID, index }) => {
         x: 0,
         opacity: 1,
         transition: {
-          delay: 0.4 * index
+          delay: 0.4
         }
       }}
       initial={{
@@ -72,7 +72,7 @@ const NominatedCard = ({ imdbID, index }) => {
           ></div>
           <div className="nominatedcard__details">
             <div className="nominatedcard__details-title">
-              {movieDetails.Title}
+              <strong>{movieDetails.Title}</strong>
             </div>
             <div className="nominatedcard__details-subtitle">
               {movieDetails.Year} • {movieDetails.imdbRating}

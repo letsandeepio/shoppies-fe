@@ -84,7 +84,6 @@ const CardList = () => {
             'https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg'
         }}
       /> */}
-          {/* <Card key={item.imdbID} movie={item} > */}
           {data?.search?.map((item) => (
             <motion.div key={item.imdbID} variants={childVariants}>
               <Card key={item.imdbID} movie={item} />
