@@ -1,8 +1,12 @@
 .card {
-  display: inline-block;
-  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  height: 220px;
+  margin: 5px;
 }
 
-.card>img {
-  width: 200px;
+.card__title {
+  background-color: black;
+  color: white;
 }
