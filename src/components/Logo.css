@@ -1,0 +1,14 @@
+.logo > h1 {
+  margin-top: 20px;
+  font-family: 'Lobster Two', cursive;
+  font-size: 40px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.logo > h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 25px;
+}

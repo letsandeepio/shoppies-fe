@@ -1,14 +1,12 @@
 import React from 'react';
 import './Sidebar.css';
 import Nomination from './Nomination';
+import Logo from './Logo';
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <div className="sidebar__logo">
-        <h1>The Shoppies</h1>
-        <h2>movie awards for entrepreneurs</h2>
-      </div>
+      <Logo />
       <Nomination />
     </div>
   );
