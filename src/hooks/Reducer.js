@@ -1,14 +1,18 @@
 export const initialState = {
   searchTerm: '',
   nominatedMovies: [],
-  isNominationFull: false
+  isNominationFull: false,
+  isLoggedIn: false,
+  user: {}
 };
 
 export const actionTypes = {
   SET_SEARCH_TERM: 'SET_SEARCH_TERM',
   ADD_NOMINATION: 'ADD_NOMINATION',
   REMOVE_NOMINATION: 'REMOVE_NOMINATION',
-  SET_NOMINATION_FULL: 'SET_NOMINATION_FULL'
+  SET_NOMINATION_FULL: 'SET_NOMINATION_FULL',
+  SET_LOGGED_IN: 'SET_LOGGED_IN',
+  SET_USER: 'SET_USER'
 };
 
 const reducer = (state, action) => {
@@ -34,6 +38,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         isNominationFull: action.status
+      };
+    case actionTypes.SET_LOGGED_IN:
+      return {
+        ...state,
+        isLoggedIn: action.status
+      };
+    case actionTypes.SET_USER:
+      return {
+        ...state,
+        user: { ...action.user }
       };
     default:
       return state;

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Logo from './Logo';
 import './Login.css';
-
+import { AUTH_TOKEN, USER_NAME } from '../helpers/constants';
 import { gql, useMutation } from '@apollo/client';
+import { actionTypes } from '../hooks/Reducer';
+import { useStateValue } from '../context/StateProvider';
+import { useHistory } from 'react-router-dom';
 
 const SIGNIN_MUTATION = gql`
   mutation SigninMutation($email: String!, $password: String!) {
@@ -29,6 +32,8 @@ const SIGNUP_MUTATION = gql`
 `;
 
 const Login = () => {
+  const history = useHistory();
+  const dispatch = useStateValue()[1];
   const [state, setState] = useState({
     login: '',
     name: '',
@@ -39,12 +44,20 @@ const Login = () => {
   const [userAuth] = useMutation(login ? SIGNIN_MUTATION : SIGNUP_MUTATION, {
     onCompleted: (data) => {
       const { token, user, error } = login ? data.login : data.signup;
-      console.log(token, user, error);
+      !error ? handleUserAuth(token, user) : console.log(error);
     },
     onError: (error) => {
       console.log(error.message);
     }
   });
+
+  const handleUserAuth = (token, user) => {
+    localStorage.setItem(AUTH_TOKEN, token);
+    localStorage.setItem(USER_NAME, user.name);
+    dispatch({ type: actionTypes.SET_LOGGED_IN, status: true });
+    dispatch({ type: actionTypes.SET_USER, user: { ...user } });
+    history.push('/');
+  };
 
   const handleSubmit = () => {
     userAuth({
@@ -62,13 +75,14 @@ const Login = () => {
         <Logo />
         <h4>{login ? 'Login' : 'Sign Up'}</h4>
 
-        <input
-          value={name}
-          onChange={(e) => setState({ ...state, name: e.target.value })}
-          type="text"
-          placeholder="Your name"
-          style={{ visibility: login ? 'hidden' : 'visible' }}
-        />
+        {!login && (
+          <input
+            value={name}
+            onChange={(e) => setState({ ...state, name: e.target.value })}
+            type="text"
+            placeholder="Your name"
+          />
+        )}
 
         <input
           value={email}
