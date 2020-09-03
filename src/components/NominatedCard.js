@@ -49,7 +49,7 @@ const NominatedCard = ({ imdbID }) => {
           {getMovieDetails.Title}
         </div>
         <div className="nominatedcard__details-subtitle">
-          {getMovieDetails.Year}
+          {getMovieDetails.Year} • {getMovieDetails.imdbRating}
         </div>
       </div>
       <div

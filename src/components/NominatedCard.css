@@ -19,13 +19,13 @@
 
 .nominatedcard__close {
   font-size: 24px;
-  transition: ease-in-out;
-  transition-duration: 200ms;
+  transition: ease-in;
+  transition-duration: 100ms;
   color: gray;
 }
 
 .nominatedcard__close:hover {
-  transform: scale(1.4);
+  transform: scale(1.2);
 }
 
 .nominatedcard__poster {
