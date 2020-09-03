@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStateValue } from '../context/StateProvider';
 
 import { gql, useQuery } from '@apollo/client';
@@ -19,6 +19,7 @@ const GET_MOVIE_DETAILS = gql`
 `;
 
 const NominatedCard = ({ imdbID }) => {
+  const [showCross, setShowCross] = useState(false);
   const { loading, error, data } = useQuery(GET_MOVIE_DETAILS, {
     variables: {
       imdbID
@@ -31,18 +32,37 @@ const NominatedCard = ({ imdbID }) => {
   const { getMovieDetails } = data;
 
   return (
-    <li className="nominatedcard">
-      <span>{getMovieDetails.Title}</span>
-      <span
+    <li
+      className="nominatedcard"
+      onMouseEnter={() => setShowCross(true)}
+      onMouseLeave={() => setShowCross(false)}
+    >
+      <div
+        className="nominatedcard__poster"
+        style={{
+          background: `url('${getMovieDetails.Poster}')`,
+          backgroundSize: 'cover'
+        }}
+      ></div>
+      <div className="nominatedcard__details">
+        <div className="nominatedcard__details-title">
+          {getMovieDetails.Title}
+        </div>
+        <div className="nominatedcard__details-subtitle">
+          {getMovieDetails.Year}
+        </div>
+      </div>
+      <div
         onClick={() =>
           dispatch({
             type: 'REMOVE_NOMINATION',
             id: imdbID
           })
         }
+        className="nominatedcard__details-close"
       >
-        <CloseCircleOutlined className="nominatedcard__close" />
-      </span>
+        {showCross && <CloseCircleOutlined className="nominatedcard__close" />}
+      </div>
     </li>
   );
 };

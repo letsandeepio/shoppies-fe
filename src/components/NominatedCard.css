@@ -1,19 +1,18 @@
 .nominatedcard {
   list-style-type: none;
-  padding: 20px;
   display: flex;
-  justify-content: space-between;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  border-radius: 10px;
   margin-bottom: 20px;
   background-color: white;
+  height: 80px;
+  align-items: center;
 }
 
 .nominatedcard:hover {
-  background-color: #efefef;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-.nominatedcard > span {
+.nominatedcard>span {
   font-size: 18px;
   font-weight: bold;
 }
@@ -22,8 +21,24 @@
   font-size: 24px;
   transition: ease-in-out;
   transition-duration: 200ms;
+  color: gray;
 }
 
 .nominatedcard__close:hover {
   transform: scale(1.4);
+}
+
+.nominatedcard__poster {
+  width: 80px;
+  height: 80px;
+}
+
+.nominatedcard__details {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.nominatedcard__details-close {
+  padding: 10px;
+  width: 24px;
 }

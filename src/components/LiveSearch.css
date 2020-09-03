@@ -1,7 +1,9 @@
 .livesearch {
   display: flex;
-  width: 100%;
-  position: fixed;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  z-index: 9999;
 }
 
 .livesearch__container {
@@ -19,7 +21,7 @@
 }
 
 .livesearch__container:hover {
-  border: solid 1px gold;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .livesearch__container input {
