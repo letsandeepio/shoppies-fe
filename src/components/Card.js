@@ -4,7 +4,7 @@ import './Card.css';
 import { useStateValue } from '../context/StateProvider';
 import { TrophyOutlined } from '@ant-design/icons';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Card = ({ movie }) => {
   const [{ nominatedMovies, isNominationFull }, dispatch] = useStateValue();
@@ -30,7 +30,24 @@ const Card = ({ movie }) => {
           backgroundSize: 'cover'
         }}
       >
-        {isNominated && <div className="stamp is-easy">nominated</div>}
+        <AnimatePresence>
+          {isNominated && (
+            <motion.div
+              className="badge"
+              animate={{
+                scale: 1
+              }}
+              initial={{
+                scale: 0
+              }}
+              exit={{
+                scale: 0
+              }}
+            >
+              nominated
+            </motion.div>
+          )}
+        </AnimatePresence>
         <div className="card__action">
           {showButton && (
             <motion.button

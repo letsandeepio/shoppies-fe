@@ -6,4 +6,5 @@
   margin-top: 100px;
   padding: 50px;
   grid-auto-flow: row;
+  user-select: none;
 }

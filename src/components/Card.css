@@ -56,11 +56,8 @@
   border-color: #40a9ff;
 }
 
-.is-easy {
+.badge {
   background-color: #ffe270;
-}
-
-.stamp {
   top: -10px;
   position: absolute;
   border-radius: 2px;
