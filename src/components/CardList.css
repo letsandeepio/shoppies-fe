@@ -8,3 +8,11 @@
   grid-auto-flow: row;
   user-select: none;
 }
+
+.cardlist__loader {
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}

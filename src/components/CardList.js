@@ -6,6 +6,7 @@ import { gql, useLazyQuery } from '@apollo/client';
 import Card from './Card';
 import './CardList.css';
 import useDebounce from '../hooks/useDebounce';
+import Loader from './Loader';
 
 const SEARCH = gql`
   query Search($title: String!) {
@@ -46,47 +47,45 @@ const childVariants = {
 
 const CardList = () => {
   const [{ searchTerm }] = useStateValue();
-  const [showResults, setShowResults] = useState(false);
+  const [results, setResults] = useState();
 
-  const [getSearchResults, { loading, data }] = useLazyQuery(SEARCH);
+  const [getSearchResults, { loading }] = useLazyQuery(SEARCH, {
+    onCompleted: (data) => {
+      setResults(data.search);
+    }
+  });
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(() => {
+    setResults(null);
     if (debouncedSearchTerm.length >= 3) {
       getSearchResults({
         variables: {
           title: debouncedSearchTerm
         }
       });
-      setShowResults(true);
-    } else {
-      setShowResults(false);
     }
   }, [getSearchResults, debouncedSearchTerm]);
 
-  if (loading) return `Loading`;
   return (
     <>
-      {showResults && (
+      {loading && (
+        <div className="cardlist__loader">
+          <Loader />
+        </div>
+      )}
+
+      {results && (
         <motion.div
           className="cardlist"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/*  <Card
-        movie={{
-          Title: 'titanic',
-          imdbID: '1233',
-          Year: '2009',
-          Poster:
-            'https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg'
-        }}
-      /> */}
-          {data?.search?.map((item) => (
+          {results.map((item) => (
             <motion.div key={item.imdbID} variants={childVariants}>
-              <Card key={item.imdbID} movie={item} />
+              <Card movie={item} />
             </motion.div>
           ))}
         </motion.div>
