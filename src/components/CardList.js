@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { gql, useLazyQuery } from '@apollo/client';
 import Card from './Card';
 import './CardList.css';
+import useDebounce from '../hooks/useDebounce';
 
 const SEARCH = gql`
   query Search($title: String!) {
@@ -49,18 +50,20 @@ const CardList = () => {
 
   const [getSearchResults, { loading, data }] = useLazyQuery(SEARCH);
 
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
   useEffect(() => {
-    if (searchTerm.length >= 3) {
+    if (debouncedSearchTerm.length >= 3) {
       getSearchResults({
         variables: {
-          title: searchTerm
+          title: debouncedSearchTerm
         }
       });
       setShowResults(true);
     } else {
       setShowResults(false);
     }
-  }, [getSearchResults, searchTerm]);
+  }, [getSearchResults, debouncedSearchTerm]);
 
   if (loading) return `Loading`;
   return (
