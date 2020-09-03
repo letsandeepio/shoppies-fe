@@ -48,10 +48,11 @@ const childVariants = {
 const CardList = () => {
   const [{ searchTerm }] = useStateValue();
   const [results, setResults] = useState();
+  const [error, setError] = useState(null);
 
   const [getSearchResults, { loading }] = useLazyQuery(SEARCH, {
     onCompleted: (data) => {
-      setResults(data.search);
+      data.search ? setResults(data.search) : setError('No matches found!');
     }
   });
 
@@ -59,6 +60,7 @@ const CardList = () => {
 
   useEffect(() => {
     setResults(null);
+    setError(null);
     if (debouncedSearchTerm.length >= 3) {
       getSearchResults({
         variables: {
@@ -75,6 +77,8 @@ const CardList = () => {
           <Loader />
         </div>
       )}
+
+      {error && <div className="cardlist__loader">{error}</div>}
 
       {results && (
         <motion.div
