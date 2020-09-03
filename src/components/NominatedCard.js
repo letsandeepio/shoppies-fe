@@ -3,8 +3,9 @@ import { gql, useQuery } from '@apollo/client';
 
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { LoadingOutlined } from '@ant-design/icons';
-
 import { useStateValue } from '../context/StateProvider';
+
+import { motion } from 'framer-motion';
 
 import './NominatedCard.css';
 
@@ -20,7 +21,7 @@ const GET_MOVIE_DETAILS = gql`
   }
 `;
 
-const NominatedCard = ({ imdbID }) => {
+const NominatedCard = ({ imdbID, index }) => {
   const [showCross, setShowCross] = useState(false);
   const { loading, error, data } = useQuery(GET_MOVIE_DETAILS, {
     variables: {
@@ -32,10 +33,27 @@ const NominatedCard = ({ imdbID }) => {
   const movieDetails = data?.getMovieDetails;
 
   return (
-    <li
+    <motion.div
       className="nominatedcard"
-      onMouseEnter={() => setShowCross(true)}
+      onMouseOver={() => setShowCross(true)}
       onMouseLeave={() => setShowCross(false)}
+      animate={{
+        y: 0,
+        x: 0,
+        opacity: 1,
+        transition: {
+          delay: 0.4 * index
+        }
+      }}
+      initial={{
+        x: -300,
+        y: 0,
+        opacity: 0
+      }}
+      exit={{
+        x: -300,
+        opacity: 0
+      }}
     >
       {loading && (
         <div className="nominatedcard__loading">
@@ -75,7 +93,7 @@ const NominatedCard = ({ imdbID }) => {
           </div>
         </>
       )}
-    </li>
+    </motion.div>
   );
 };
 
