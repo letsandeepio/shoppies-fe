@@ -4,10 +4,12 @@ import './Card.css';
 import { useStateValue } from '../context/StateProvider';
 import { TrophyOutlined } from '@ant-design/icons';
 
-const Card = ({ movie }) => {
+import { motion } from 'framer-motion';
+
+const Card = ({ movie, animation }) => {
   const [{ nominatedMovies, isNominationFull }, dispatch] = useStateValue();
   return (
-    <div className="card">
+    <motion.div className="card" variants={animation}>
       <div
         className="card__content"
         style={{
@@ -36,7 +38,7 @@ const Card = ({ movie }) => {
         </div>
         <div className="card__year"></div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

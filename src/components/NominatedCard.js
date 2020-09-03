@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useStateValue } from '../context/StateProvider';
-
 import { gql, useQuery } from '@apollo/client';
-import { CloseCircleOutlined } from '@ant-design/icons';
 
+import { CloseCircleOutlined } from '@ant-design/icons';
 import { LoadingOutlined } from '@ant-design/icons';
+
+import { useStateValue } from '../context/StateProvider';
 
 import './NominatedCard.css';
 
