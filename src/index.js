@@ -11,6 +11,8 @@ import getLocalStorage from './helpers/getLocalStorage';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 
+import { BrowserRouter } from 'react-router-dom';
+
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
   cache: new InMemoryCache()
@@ -18,15 +20,17 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <StateProvider
-        initialState={initialState}
-        reducer={reducer}
-        init={getLocalStorage}
-      >
-        <App />
-      </StateProvider>
-    </ApolloProvider>
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <StateProvider
+          initialState={initialState}
+          reducer={reducer}
+          init={getLocalStorage}
+        >
+          <App />
+        </StateProvider>
+      </ApolloProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
