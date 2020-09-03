@@ -61,6 +61,7 @@ const Card = ({ movie }) => {
               initial={{
                 scale: 0
               }}
+              className="card__action-button"
             >
               <TrophyOutlined />
             </motion.button>
