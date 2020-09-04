@@ -10,13 +10,38 @@ import getLocalStorage from './helpers/getLocalStorage';
 
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
+import { createHttpLink } from '@apollo/client/link/http';
+import { setContext } from '@apollo/client/link/context';
 
 import { BrowserRouter } from 'react-router-dom';
 
-const client = new ApolloClient({
-  uri: 'http://localhost:4000/',
-  cache: new InMemoryCache()
+import { AUTH_TOKEN } from './helpers/constants';
+
+let client;
+
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4000'
 });
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem(AUTH_TOKEN);
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+      client: 'shoppies'
+    }
+  };
+});
+
+try {
+  client = new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache()
+  });
+} catch (error) {
+  console.error(`Error setting up client: ${error.message}`);
+}
 
 ReactDOM.render(
   <React.StrictMode>
