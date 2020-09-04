@@ -5,8 +5,9 @@ import './Nomination.css';
 import { TrophyOutlined } from '@ant-design/icons';
 import { AnimatePresence } from 'framer-motion';
 
-const Nomination = () => {
+const Nomination = ({ mode, nominatedMoviesList }) => {
   const [{ nominatedMovies }] = useStateValue();
+  const movies = mode === 'view' ? nominatedMoviesList : nominatedMovies;
   return (
     <div className="nomination">
       <h3>
@@ -16,7 +17,7 @@ const Nomination = () => {
 
       <div className="nomination__container">
         <AnimatePresence>
-          {nominatedMovies.map((imdbID, i) => (
+          {movies.map((imdbID, i) => (
             <NominatedCard key={imdbID} imdbID={imdbID} index={i} />
           ))}
         </AnimatePresence>

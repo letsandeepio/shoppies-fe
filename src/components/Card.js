@@ -14,7 +14,11 @@ const Card = ({ movie }) => {
     <motion.div
       className="card"
       whileHover={{
-        scale: 1.1
+        scale: 1.1,
+        transition: {
+          type: 'spring',
+          duration: 0.5
+        }
       }}
       onMouseOver={() => setShowButton(true)}
       onMouseLeave={() => setShowButton(false)}

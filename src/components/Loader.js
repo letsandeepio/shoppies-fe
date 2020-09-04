@@ -20,10 +20,10 @@ const loaderVariants = {
   }
 };
 
-const Loader = () => {
+const Loader = ({ invert }) => {
   return (
     <motion.div
-      className="loader"
+      className={`loader ${invert ? 'invert' : ''}`}
       variants={loaderVariants}
       animate="visible"
     ></motion.div>
