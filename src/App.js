@@ -7,11 +7,11 @@ import LiveSearch from './components/LiveSearch';
 import Notification from './components/Notification';
 import { useStateValue } from './context/StateProvider';
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Login from './components/Login';
 
 function App() {
-  const [{ isNominationFull }] = useStateValue();
+  const [{ isNominationFull, isLoggedIn }] = useStateValue();
 
   return (
     <div className="app">
@@ -20,16 +20,22 @@ function App() {
           <Login />
         </Route>
         <Route exact path="/">
-          <div className="app__layout">
-            <div className="app__layout-left">
-              <Sidebar />
-            </div>
-            <div className="app__layout-right">
-              <LiveSearch />
-              <CardList />
-            </div>
-          </div>
-          {isNominationFull && <Notification />}
+          {!isLoggedIn ? (
+            <Redirect to="/login" />
+          ) : (
+            <>
+              <div className="app__layout">
+                <div className="app__layout-left">
+                  <Sidebar />
+                </div>
+                <div className="app__layout-right">
+                  <LiveSearch />
+                  <CardList />
+                </div>
+              </div>
+              {isNominationFull && <Notification />}
+            </>
+          )}
         </Route>
       </Switch>
     </div>
