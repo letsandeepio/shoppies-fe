@@ -4,6 +4,7 @@
 
 .app__layout-left {
   width: 30vw;
+  min-width: 400px;
   height: 100vh;
 }
 
@@ -11,5 +12,5 @@
   width: 70vw;
   height: 100vh;
   overflow: scroll;
-  background-color: rgba(49, 52, 82, 0.6)
+  background-color: rgba(49, 52, 82, 0.6);
 }

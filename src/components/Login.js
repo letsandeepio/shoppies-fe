@@ -43,7 +43,7 @@ const snackBarOptions = {
 const Login = () => {
   const history = useHistory();
   const dispatch = useStateValue()[1];
-  const [openSnackbar] = useSnackbar(snackBarOptions);
+  const [openSnackbar, closeSnackbar] = useSnackbar(snackBarOptions);
 
   const [state, setState] = useState({
     login: true,
@@ -57,12 +57,13 @@ const Login = () => {
       const { token, user, error } = login ? data.login : data.signup;
       !error ? handleUserAuth(token, user) : openSnackbar(error);
     },
-    onError: (error) => {
-      openSnackbar(error.message);
+    onError: () => {
+      openSnackbar('Something went wrong.');
     }
   });
 
   const handleUserAuth = (token, user) => {
+    closeSnackbar();
     localStorage.setItem(AUTH_TOKEN, token);
     localStorage.setItem(USER_NAME, user.name);
     dispatch({ type: actionTypes.SET_LOGGED_IN, status: true });
@@ -72,16 +73,16 @@ const Login = () => {
 
   const handleSubmit = () => {
     if (!login && !name) {
-      openSnackbar('name required');
+      openSnackbar('name required.');
       return;
     }
     if (!email) {
-      openSnackbar('email required');
+      openSnackbar('email required.');
       return;
     }
 
     if (!password) {
-      openSnackbar('password required');
+      openSnackbar('password required.');
       return;
     }
 

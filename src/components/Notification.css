@@ -1,6 +1,7 @@
 .notification {
   font-family: 'Cormorant Garamond', serif;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
   width: 50vw;
   position: absolute;
   bottom: 0px;
