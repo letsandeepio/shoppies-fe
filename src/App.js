@@ -9,6 +9,7 @@ import { useStateValue } from './context/StateProvider';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Login from './components/Login';
+import ViewNominations from './components/ViewNominations';
 
 function App() {
   const [{ isNominationFull, isLoggedIn }] = useStateValue();
@@ -36,6 +37,9 @@ function App() {
               {isNominationFull && <Notification />}
             </>
           )}
+        </Route>
+        <Route exact path="/n/:id">
+          <ViewNominations />
         </Route>
       </Switch>
     </div>

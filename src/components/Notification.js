@@ -26,9 +26,8 @@ const Notification = () => {
   const [nominate] = useMutation(NOMINATION_MUTATION, {
     onCompleted: (data) => {
       setLoading(false);
-      setLink(data.nominate.url);
+      setLink(`${window.location.href}n/${data.nominate.url}`);
       expandNotificaton(true);
-      console.log(data);
     },
     onError: (error) => {
       console.log(error);
