@@ -12,6 +12,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 import { createHttpLink } from '@apollo/client/link/http';
 import { setContext } from '@apollo/client/link/context';
+import SnackbarProvider from 'react-simple-snackbar';
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -52,7 +53,9 @@ ReactDOM.render(
           reducer={reducer}
           init={getLocalStorage}
         >
-          <App />
+          <SnackbarProvider>
+            <App />
+          </SnackbarProvider>
         </StateProvider>
       </ApolloProvider>
     </BrowserRouter>

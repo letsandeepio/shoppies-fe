@@ -6,6 +6,7 @@ import { gql, useMutation } from '@apollo/client';
 import { actionTypes } from '../hooks/Reducer';
 import { useStateValue } from '../context/StateProvider';
 import { useHistory } from 'react-router-dom';
+import { useSnackbar } from 'react-simple-snackbar';
 
 const SIGNIN_MUTATION = gql`
   mutation SigninMutation($email: String!, $password: String!) {
@@ -31,9 +32,19 @@ const SIGNUP_MUTATION = gql`
   }
 `;
 
+const snackBarOptions = {
+  position: 'top-center',
+  style: {
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    fontFamily: `'Cormorant Garamond', serif`
+  }
+};
+
 const Login = () => {
   const history = useHistory();
   const dispatch = useStateValue()[1];
+  const [openSnackbar] = useSnackbar(snackBarOptions);
+
   const [state, setState] = useState({
     login: true,
     name: '',
@@ -44,10 +55,10 @@ const Login = () => {
   const [userAuth] = useMutation(login ? SIGNIN_MUTATION : SIGNUP_MUTATION, {
     onCompleted: (data) => {
       const { token, user, error } = login ? data.login : data.signup;
-      !error ? handleUserAuth(token, user) : console.log(error);
+      !error ? handleUserAuth(token, user) : openSnackbar(error);
     },
     onError: (error) => {
-      console.log(error);
+      openSnackbar(error.message);
     }
   });
 
@@ -60,6 +71,20 @@ const Login = () => {
   };
 
   const handleSubmit = () => {
+    if (!login && !name) {
+      openSnackbar('name required');
+      return;
+    }
+    if (!email) {
+      openSnackbar('email required');
+      return;
+    }
+
+    if (!password) {
+      openSnackbar('password required');
+      return;
+    }
+
     userAuth({
       variables: {
         name,
