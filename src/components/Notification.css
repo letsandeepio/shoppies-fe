@@ -1,11 +1,47 @@
 .notification {
+  display: flex;
+  place-items: center;
+  justify-content: center;
   font-family: 'Cormorant Garamond', serif;
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
-  width: 50vw;
+  width: 35vw;
   position: absolute;
   bottom: 0px;
   padding: 20px;
   box-shadow: 0 1px 5px -1px rgba(0, 0, 0, 0.3),
     inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.notification__container {
+  width: 35vw;
+  margin: 0 auto;
+}
+
+.notification__content {
+  flex-grow: 1;
+}
+
+.notification__content > span {
+  padding-right: 10px;
+}
+
+.notification__content-button {
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  border-radius: 19px;
+  background-clip: padding-box;
+  background-color: #55b1df;
+  border: 1px solid #55b1df;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 15px;
+}
+
+.notification__content-button:hover {
+  background-color: #fff;
+  border: 1px solid #55b1df;
+  color: #55b1df;
+  cursor: pointer;
 }

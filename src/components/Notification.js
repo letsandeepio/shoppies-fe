@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const Notification = () => {
   return (
-    <div style={{ width: '50vw', margin: '0 auto' }}>
+    <div className="notification__container">
       <motion.div
         animate={{
           opacity: 1
@@ -14,17 +14,17 @@ const Notification = () => {
           opacity: 0
         }}
         className="notification"
-        style={{
-          display: 'flex',
-          placeItems: 'center',
-          justifyContent: 'center'
-        }}
       >
-        <span role="img" alt="celeberation emoji" aria-label="emoji">
-          🎉
-        </span>
-        &nbsp;Thanks for nominating 5 movies. Please click send to submit them
-        and generate a shareable link.
+        <div className="notification__content">
+          <span role="img" alt="celeberation emoji" aria-label="emoji">
+            🎉
+          </span>
+          &nbsp;Thanks for nominating 5 movies.
+        </div>
+
+        <div>
+          <button className="notification__content-button">submit</button>
+        </div>
       </motion.div>
     </div>
   );
