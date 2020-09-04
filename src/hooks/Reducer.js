@@ -12,7 +12,8 @@ export const actionTypes = {
   REMOVE_NOMINATION: 'REMOVE_NOMINATION',
   SET_NOMINATION_FULL: 'SET_NOMINATION_FULL',
   SET_LOGGED_IN: 'SET_LOGGED_IN',
-  SET_USER: 'SET_USER'
+  SET_USER: 'SET_USER',
+  RESET_STATE: 'RESET_STATE'
 };
 
 const reducer = (state, action) => {
@@ -48,6 +49,10 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: { ...action.user }
+      };
+    case actionTypes.RESET_STATE:
+      return {
+        ...initialState
       };
     default:
       return state;

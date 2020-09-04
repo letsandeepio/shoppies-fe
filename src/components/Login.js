@@ -35,7 +35,7 @@ const Login = () => {
   const history = useHistory();
   const dispatch = useStateValue()[1];
   const [state, setState] = useState({
-    login: '',
+    login: true,
     name: '',
     email: '',
     password: ''
@@ -47,7 +47,7 @@ const Login = () => {
       !error ? handleUserAuth(token, user) : console.log(error);
     },
     onError: (error) => {
-      console.log(error.message);
+      console.log(error);
     }
   });
 
@@ -65,6 +65,15 @@ const Login = () => {
         name,
         password,
         email
+      }
+    });
+  };
+
+  const handleDemoUser = () => {
+    userAuth({
+      variables: {
+        email: 'demouser@shoppie.com',
+        password: 'password'
       }
     });
   };
@@ -96,9 +105,10 @@ const Login = () => {
           type="password"
           placeholder="Choose a safe password"
         />
-        <button type="submit" onClick={handleSubmit}>
+        <button onClick={handleSubmit}>
           {login ? 'login' : 'create account'}
         </button>
+        <button onClick={handleDemoUser}>demo</button>
         <div
           onClick={() => setState({ ...state, login: !login })}
           className="login__options"
