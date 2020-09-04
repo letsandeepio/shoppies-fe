@@ -3,6 +3,7 @@ import './Sidebar.css';
 import Nomination from './Nomination';
 import Logo from './Logo';
 import Logout from './Logout';
+import SocialBar from './SocialBar';
 
 const Sidebar = () => {
   return (
@@ -10,7 +11,7 @@ const Sidebar = () => {
       <Logo />
 
       <Nomination />
-
+      <SocialBar />
       <Logout />
     </div>
   );
