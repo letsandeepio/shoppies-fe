@@ -20,8 +20,7 @@
   align-items: center;
 }
 
-.login__container > input,
-button {
+.login__container > input {
   width: 300px;
   font-family: inherit;
   font-weight: bold;
