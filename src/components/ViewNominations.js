@@ -5,6 +5,7 @@ import Nomination from './Nomination';
 import './ViewNominations.css';
 import { gql, useQuery } from '@apollo/client';
 import Loader from './Loader';
+import SocialBar from './SocialBar';
 
 const GET_NOMINATIONS = gql`
   query getNominations($uuid: String!) {
@@ -32,6 +33,7 @@ const ViewNominations = () => {
             nominatedMoviesList={JSON.parse(data.getNominations)}
           />
         )}
+        <SocialBar />
       </div>
     </div>
   );
