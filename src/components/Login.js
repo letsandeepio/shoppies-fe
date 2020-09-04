@@ -89,7 +89,7 @@ const Login = () => {
             value={name}
             onChange={(e) => setState({ ...state, name: e.target.value })}
             type="text"
-            placeholder="Your name"
+            placeholder="name"
           />
         )}
 
@@ -97,13 +97,13 @@ const Login = () => {
           value={email}
           onChange={(e) => setState({ ...state, email: e.target.value })}
           type="text"
-          placeholder="Your email address"
+          placeholder="email"
         />
         <input
           value={password}
           onChange={(e) => setState({ ...state, password: e.target.value })}
           type="password"
-          placeholder="Choose a safe password"
+          placeholder="password"
         />
         <button onClick={handleSubmit}>
           {login ? 'login' : 'create account'}
