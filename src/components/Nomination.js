@@ -18,7 +18,7 @@ const Nomination = ({ mode, nominatedMoviesList }) => {
       <div className="nomination__container">
         <AnimatePresence>
           {movies.map((imdbID, i) => (
-            <NominatedCard key={imdbID} imdbID={imdbID} index={i} />
+            <NominatedCard key={imdbID} imdbID={imdbID} index={i} mode={mode} />
           ))}
         </AnimatePresence>
       </div>

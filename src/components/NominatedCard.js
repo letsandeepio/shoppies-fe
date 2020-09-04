@@ -21,7 +21,7 @@ const GET_MOVIE_DETAILS = gql`
   }
 `;
 
-const NominatedCard = ({ imdbID, index }) => {
+const NominatedCard = ({ imdbID, mode }) => {
   const [showCross, setShowCross] = useState(false);
   const { loading, error, data } = useQuery(GET_MOVIE_DETAILS, {
     variables: {
@@ -78,19 +78,24 @@ const NominatedCard = ({ imdbID, index }) => {
               {movieDetails.Year} • {movieDetails.imdbRating}
             </div>
           </div>
-          <div
-            onClick={() =>
-              dispatch({
-                type: 'REMOVE_NOMINATION',
-                id: imdbID
-              })
-            }
-            className="nominatedcard__details-close"
-          >
-            {showCross && (
-              <CloseCircleOutlined className="nominatedcard__close" />
-            )}
-          </div>
+
+          {mode !== 'view' ? (
+            <div
+              onClick={() =>
+                dispatch({
+                  type: 'REMOVE_NOMINATION',
+                  id: imdbID
+                })
+              }
+              className="nominatedcard__details-close"
+            >
+              {showCross && (
+                <CloseCircleOutlined className="nominatedcard__close" />
+              )}
+            </div>
+          ) : (
+            ''
+          )}
         </>
       )}
     </motion.div>
