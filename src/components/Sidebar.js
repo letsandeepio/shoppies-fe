@@ -8,7 +8,9 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <Logo />
+
       <Nomination />
+
       <Logout />
     </div>
   );

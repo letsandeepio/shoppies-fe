@@ -1,6 +1,7 @@
 .nomination {
-  margin-top: 60px;
+  margin-top: 30px;
   font-family: 'Cormorant Garamond', serif;
+  flex-grow: 1;
 }
 
 .nomination__container {

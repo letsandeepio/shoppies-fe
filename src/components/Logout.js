@@ -2,6 +2,7 @@ import React from 'react';
 import { useStateValue } from '../context/StateProvider';
 import { actionTypes } from '../hooks/Reducer';
 import { useHistory } from 'react-router-dom';
+import './Logout.css';
 
 const Logout = () => {
   const dispatch = useStateValue()[1];
@@ -12,8 +13,10 @@ const Logout = () => {
     history.push('/');
   };
   return (
-    <div>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="logout">
+      <button onClick={handleLogout} className="logout-button">
+        Logout
+      </button>
     </div>
   );
 };
