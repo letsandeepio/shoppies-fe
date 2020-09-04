@@ -2,14 +2,47 @@ import React, { useState } from 'react';
 import './Notification.css';
 import Loader from './Loader';
 
+import { gql, useMutation } from '@apollo/client';
+import { useStateValue } from '../context/StateProvider';
+
 import { motion } from 'framer-motion';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
+const NOMINATION_MUTATION = gql`
+  mutation Nominate($nominations: String!) {
+    nominate(nominations: $nominations) {
+      url
+    }
+  }
+`;
+
 const Notification = () => {
+  const [{ nominatedMovies }] = useStateValue();
   const [expanded, expandNotificaton] = useState(false);
   const [link, setLink] = useState('');
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [nominate] = useMutation(NOMINATION_MUTATION, {
+    onCompleted: (data) => {
+      setLoading(false);
+      setLink(data.nominate.url);
+      expandNotificaton(true);
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error);
+    }
+  });
+
+  const handleSubmit = () => {
+    setLoading(true);
+    nominate({
+      variables: {
+        nominations: JSON.stringify(nominatedMovies)
+      }
+    });
+  };
 
   const Submit = () => {
     return !loading ? (
@@ -23,9 +56,7 @@ const Notification = () => {
         <div>
           <button
             className="notification__content-button"
-            onClick={() => {
-              expandNotificaton(!expanded);
-            }}
+            onClick={handleSubmit}
           >
             submit
           </button>
@@ -52,9 +83,9 @@ const Notification = () => {
         ) : (
           <>
             <div>
-              <div class="notification__success-message">
-                Thank you! Your nominations have been submitted. Share with your
-                friends.
+              <div className="notification__success-message">
+                Thank you! Your nominations have been submitted. Share the list
+                with your friends.
               </div>
               <div className="notification__success">
                 <div className="notification__success-container">

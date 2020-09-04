@@ -32,7 +32,7 @@ const SIGNUP_MUTATION = gql`
   }
 `;
 
-const snackBarOptions = {
+export const snackBarOptions = {
   position: 'top-center',
   style: {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
