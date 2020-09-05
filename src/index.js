@@ -21,7 +21,7 @@ import { AUTH_TOKEN } from './helpers/constants';
 let client;
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000'
+  uri: 'https://shoppies-api.herokuapp.com/'
 });
 
 const authLink = setContext((_, { headers }) => {

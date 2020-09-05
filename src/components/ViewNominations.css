@@ -5,6 +5,9 @@
 }
 
 .viewnominations__container {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
   width: 500px;
   margin: 0 auto;
 }
