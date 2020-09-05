@@ -21,7 +21,7 @@ const GET_MOVIE_DETAILS = gql`
   }
 `;
 
-const NominatedCard = ({ imdbID, mode }) => {
+const NominatedCard = ({ imdbID, mode, index }) => {
   const [showCross, setShowCross] = useState(false);
   const { loading, error, data } = useQuery(GET_MOVIE_DETAILS, {
     variables: {
@@ -42,11 +42,11 @@ const NominatedCard = ({ imdbID, mode }) => {
         x: 0,
         opacity: 1,
         transition: {
-          delay: 0.4
+          delay: mode !== 'view' ? 0.4 : index * 0.5
         }
       }}
       initial={{
-        x: -300,
+        x: mode !== 'view' ? -300 : 0,
         y: 0,
         opacity: 0
       }}
