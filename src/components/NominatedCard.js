@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
 
-import { CloseCircleOutlined } from '@ant-design/icons';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useStateValue } from '../context/StateProvider';
 
@@ -75,22 +74,32 @@ const NominatedCard = ({ imdbID, mode, index }) => {
               <strong>{movieDetails.Title}</strong>
             </div>
             <div className="nominatedcard__details-subtitle">
-              {movieDetails.Year} • {movieDetails.imdbRating}
+              {movieDetails.Year} • {movieDetails.imdbRating}/10
             </div>
           </div>
 
           {mode !== 'view' ? (
-            <div
-              onClick={() =>
-                dispatch({
-                  type: 'REMOVE_NOMINATION',
-                  id: imdbID
-                })
-              }
-              className="nominatedcard__details-close"
-            >
+            <div className="nominatedcard__details-close">
               {showCross && (
-                <CloseCircleOutlined className="nominatedcard__close" />
+                <a
+                  href={`https://www.imdb.com/title/${imdbID}/`}
+                  target="_blank"
+                >
+                  <button style={{ background: '#eac9ff' }}>imdb</button>
+                </a>
+              )}
+
+              {showCross && (
+                <button
+                  onClick={() =>
+                    dispatch({
+                      type: 'REMOVE_NOMINATION',
+                      id: imdbID
+                    })
+                  }
+                >
+                  drop
+                </button>
               )}
             </div>
           ) : (

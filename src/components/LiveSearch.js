@@ -12,7 +12,7 @@ const LiveSearch = () => {
       className="livesearch"
       animate={{ y: 0 }}
       initial={{ y: -300 }}
-      transition={{ delay: 1, duration: 1, type: 'spring' }}
+      transition={{ delay: 3, duration: 1, type: 'spring' }}
     >
       <div className="livesearch__container">
         <input

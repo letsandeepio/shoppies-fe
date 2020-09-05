@@ -27,6 +27,16 @@ const Nomination = ({ mode, nominatedMoviesList }) => {
           <TrophyOutlined />
         </h3>
         <h3>your nominations</h3>
+        {nominatedMovies.length === 0 && (
+          <div
+            style={{
+              textAlign: 'center',
+              marginBottom: '5px'
+            }}
+          >
+            Search on right to nominate your top 5 movies
+          </div>
+        )}
       </motion.div>
 
       <div className="nomination__container">

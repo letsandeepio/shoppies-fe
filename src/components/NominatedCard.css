@@ -6,6 +6,8 @@
   height: 80px;
   align-items: center;
   margin-bottom: 10px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 
 .nominatedcard:hover {
@@ -13,7 +15,7 @@
 }
 
 .nominatedcard > span {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -24,23 +26,36 @@
   color: gray;
 }
 
-.nominatedcard__close:hover {
-  transform: scale(1.2);
-}
-
 .nominatedcard__poster {
   width: 80px;
   height: 80px;
 }
 
 .nominatedcard__details {
-  flex-grow: 1;
+  word-break: break-all;
   padding: 10px;
+  flex-grow: 1;
 }
 
 .nominatedcard__details-close {
-  padding: 10px;
-  width: 24px;
+  padding-right: 10px;
+  width: 100px;
+}
+
+.nominatedcard__details-close button {
+  outline: none;
+  font-family: inherit;
+  border: solid 0px;
+  background-color: #ffe270;
+  border-radius: 2px;
+  color: hsla(0, 0%, 4%, 0.6);
+  font-size: 0.875rem;
+  line-height: 1;
+  padding: 0.25em 0.5em;
+  vertical-align: middle;
+  text-transform: lowercase;
+  font-weight: bold;
+  margin-right: 5px;
 }
 
 .nominatedcard__loading {

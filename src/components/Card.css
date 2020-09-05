@@ -67,9 +67,7 @@
   font-size: 0.875rem;
   line-height: 1;
   padding: 0.25em 0.5em;
-  padding-top: calc(0.25em + 1px);
   vertical-align: middle;
-  position: absolute;
   left: -20px;
   text-transform: lowercase;
   font-weight: bold;
