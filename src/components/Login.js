@@ -8,6 +8,8 @@ import { useStateValue } from '../context/StateProvider';
 import { useHistory } from 'react-router-dom';
 import { useSnackbar } from 'react-simple-snackbar';
 
+import { LoadingOutlined } from '@ant-design/icons';
+
 const SIGNIN_MUTATION = gql`
   mutation SigninMutation($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -53,15 +55,18 @@ const Login = () => {
     demoMode: false
   });
   const { login, name, email, password, demoMode } = state;
-  const [userAuth] = useMutation(login ? SIGNIN_MUTATION : SIGNUP_MUTATION, {
-    onCompleted: (data) => {
-      const { token, user, error } = login ? data.login : data.signup;
-      !error ? handleUserAuth(token, user) : openSnackbar(error);
-    },
-    onError: () => {
-      openSnackbar('Something went wrong.');
+  const [userAuth, { loading }] = useMutation(
+    login ? SIGNIN_MUTATION : SIGNUP_MUTATION,
+    {
+      onCompleted: (data) => {
+        const { token, user, error } = login ? data.login : data.signup;
+        !error ? handleUserAuth(token, user) : openSnackbar(error);
+      },
+      onError: () => {
+        openSnackbar('Something went wrong.');
+      }
     }
-  });
+  );
 
   const handleUserAuth = (token, user) => {
     closeSnackbar();
@@ -114,7 +119,10 @@ const Login = () => {
     <div className="login">
       <div className="login__container">
         <Logo />
-        <h4>{login ? 'Login' : 'Sign Up'}</h4>
+        <h4>
+          {loading && <LoadingOutlined />}&nbsp;
+          {login ? 'Login' : 'Sign Up'}
+        </h4>
 
         {!login && (
           <input

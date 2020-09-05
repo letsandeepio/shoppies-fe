@@ -78,35 +78,30 @@ const NominatedCard = ({ imdbID, mode, index }) => {
             </div>
           </div>
 
-          {mode !== 'view' ? (
-            <div className="nominatedcard__details-close">
-              {showCross && (
-                <a
-                  href={`https://www.imdb.com/title/${imdbID}/`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ cursor: 'default' }}
-                >
-                  <button style={{ background: '#eac9ff' }}>imdb</button>
-                </a>
-              )}
-
-              {showCross && (
-                <button
-                  onClick={() =>
-                    dispatch({
-                      type: 'REMOVE_NOMINATION',
-                      id: imdbID
-                    })
-                  }
-                >
-                  drop
-                </button>
-              )}
-            </div>
-          ) : (
-            ''
-          )}
+          <div className="nominatedcard__details-close">
+            {showCross && (
+              <a
+                href={`https://www.imdb.com/title/${imdbID}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ cursor: 'default' }}
+              >
+                <button style={{ background: '#eac9ff' }}>imdb</button>
+              </a>
+            )}
+            {mode !== 'view' && showCross && (
+              <button
+                onClick={() =>
+                  dispatch({
+                    type: 'REMOVE_NOMINATION',
+                    id: imdbID
+                  })
+                }
+              >
+                drop
+              </button>
+            )}
+          </div>
         </>
       )}
     </motion.div>
