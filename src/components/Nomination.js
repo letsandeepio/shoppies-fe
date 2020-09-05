@@ -28,7 +28,7 @@ const Nomination = ({ mode, nominatedMoviesList, userName }) => {
           <TrophyOutlined />
         </h3>
         <h3>{getUserName}'s' nominations</h3>
-        {nominatedMovies.length === 0 && (
+        {nominatedMovies.length === 0 && mode !== 'view' && (
           <div
             style={{
               textAlign: 'center',

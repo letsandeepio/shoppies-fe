@@ -9,7 +9,10 @@ import SocialBar from './SocialBar';
 
 const GET_NOMINATIONS = gql`
   query getNominations($uuid: String!) {
-    getNominations(uuid: $uuid)
+    getNominations(uuid: $uuid) {
+      nominations
+      nominatedBy
+    }
   }
 `;
 
@@ -30,7 +33,8 @@ const ViewNominations = () => {
         {data && (
           <Nomination
             mode="view"
-            nominatedMoviesList={JSON.parse(data.getNominations)}
+            nominatedMoviesList={JSON.parse(data.getNominations.nominations)}
+            userName={data.getNominations.nominatedBy}
           />
         )}
         <SocialBar />
