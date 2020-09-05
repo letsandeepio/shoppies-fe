@@ -9,3 +9,8 @@
 .socialbar > div {
   padding: 5px;
 }
+
+.socialbar a {
+  color: black;
+  text-decoration: none;
+}

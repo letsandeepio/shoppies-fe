@@ -84,6 +84,8 @@ const NominatedCard = ({ imdbID, mode, index }) => {
                 <a
                   href={`https://www.imdb.com/title/${imdbID}/`}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ cursor: 'default' }}
                 >
                   <button style={{ background: '#eac9ff' }}>imdb</button>
                 </a>

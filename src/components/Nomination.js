@@ -5,8 +5,9 @@ import './Nomination.css';
 import { TrophyOutlined } from '@ant-design/icons';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Nomination = ({ mode, nominatedMoviesList }) => {
-  const [{ nominatedMovies }] = useStateValue();
+const Nomination = ({ mode, nominatedMoviesList, userName }) => {
+  const [{ nominatedMovies, user }] = useStateValue();
+  const getUserName = userName ? userName : user.name;
   const movies = mode === 'view' ? nominatedMoviesList : nominatedMovies;
   return (
     <div className="nomination">
@@ -26,7 +27,7 @@ const Nomination = ({ mode, nominatedMoviesList }) => {
         <h3>
           <TrophyOutlined />
         </h3>
-        <h3>your nominations</h3>
+        <h3>{getUserName}'s' nominations</h3>
         {nominatedMovies.length === 0 && (
           <div
             style={{

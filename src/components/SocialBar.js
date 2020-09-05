@@ -13,7 +13,7 @@ const containerVariants = {
     opacity: 1
   },
   visible: {
-    opacity: 1,
+    opacity: 0.7,
     transition: {
       type: 'spring',
       delay: 3,
@@ -43,13 +43,31 @@ const SocialBar = () => {
       animate="visible"
     >
       <motion.div variants={childVariants}>
-        <CodepenOutlined />
+        <a
+          href="https://codepen.io/letsandeepio/pens/showcase"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <CodepenOutlined />
+        </a>
       </motion.div>
       <motion.div variants={childVariants}>
-        <GithubOutlined />
+        <a
+          href="https://github.com/letsandeepio/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GithubOutlined />
+        </a>
       </motion.div>
       <motion.div variants={childVariants}>
-        <LinkedinOutlined />
+        <a
+          href="https://www.linkedin.com/in/letsandeepio/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LinkedinOutlined />
+        </a>
       </motion.div>
     </motion.div>
   );
