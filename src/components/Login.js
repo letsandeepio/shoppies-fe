@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from './Logo';
 import './Login.css';
 import { AUTH_TOKEN, USER_NAME } from '../helpers/constants';
@@ -49,9 +49,10 @@ const Login = () => {
     login: true,
     name: '',
     email: '',
-    password: ''
+    password: '',
+    demoMode: false
   });
-  const { login, name, email, password } = state;
+  const { login, name, email, password, demoMode } = state;
   const [userAuth] = useMutation(login ? SIGNIN_MUTATION : SIGNUP_MUTATION, {
     onCompleted: (data) => {
       const { token, user, error } = login ? data.login : data.signup;
@@ -71,6 +72,16 @@ const Login = () => {
     history.push('/');
   };
 
+  useEffect(() => {
+    if (demoMode) {
+      userAuth({
+        variables: {
+          email: 'demouser@shoppie.com',
+          password: 'password'
+        }
+      });
+    }
+  });
   const handleSubmit = () => {
     if (!login && !name) {
       openSnackbar('name required.');
@@ -96,12 +107,7 @@ const Login = () => {
   };
 
   const handleDemoUser = () => {
-    userAuth({
-      variables: {
-        email: 'demouser@shoppie.com',
-        password: 'password'
-      }
-    });
+    setState({ ...state, login: true, demoMode: true });
   };
 
   return (
