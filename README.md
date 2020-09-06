@@ -1,69 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# The Shoppies App
 
-## Available Scripts
+The shoppies is a full stack web application built for the Shopify Winter Internship Coding Challenge 2020. This repo contains code for the front-end. The code for the backend is available at the: https://github.com/letsandeepio/shoppies-be
 
-In the project directory, you can run:
+## Deployed Version
 
-### `npm start`
+The app is currently available for demo at https://reverent-booth-ef65f4.netlify.app/login .
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Notes for the demo
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Click on "demo" to login as demo user (saved nomination urls will get rewritten everytime)
+- Initial user login can take upto 30 seconds as the backend is deployed on Herokuapp and dyno takes times to warm up after sometime of inactivity.
+- There is an interntional delay of 1 or 2 seconds in order to demo the app's loading behaviour.
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The front-end is built using React.JS and Apollo Client for handling Graphql queries & mutations. Framer Motion is used to animate the various parts of the UI. App uses react router for login page & viewing saved nominations.
 
-### `npm run build`
+The backend is a Graphql end point built using graphql-yoga on top of Express server using Node.JS powered by Prisma & PSQL database. The server acts as a middleware for calling the OMDB api for the movie data.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Users can register & login. Demo user can be used to quickly demo the app.
+- Users can search for movies and add to or remove from the nomination list.
+- Nomination list is stored in Local Storage and persists across sessions.
+- User can view more info about the movie on it's IMDB page.
+- Once user has nomininated 5 movies, user is shown notification to submit the nominations.
+- Once user submits the nominations, a unique url is generated and nominated list is saved to the database under the user name.
+- After succesful save to the DB, User is shown option to copy the unique url to the clipboard.
+- Anybody with the unique url and can visit the
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# App in Actions
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# shoppie-fe
+## UI Micro-interactions
